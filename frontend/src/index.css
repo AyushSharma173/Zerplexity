@@ -1,0 +1,232 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Smooth animations */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Custom focus styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+}
+
+/* Gradient text animation */
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Typography improvements */
+.prose {
+  @apply text-slate-700;
+}
+
+.prose h1, .prose h2, .prose h3 {
+  @apply text-slate-900 font-semibold;
+}
+
+.prose p {
+  @apply leading-relaxed;
+}
+
+/* Custom button animations */
+.btn-primary {
+  @apply bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg transition-all duration-200 shadow-sm hover:shadow-md transform hover:scale-105 active:scale-95;
+}
+
+/* Loading animation */
+.loading-dots {
+  display: inline-block;
+}
+
+.loading-dots::after {
+  content: '';
+  animation: loading-dots 1.5s infinite;
+}
+
+@keyframes loading-dots {
+  0%, 20% { content: ''; }
+  40% { content: '.'; }
+  60% { content: '..'; }
+  80%, 100% { content: '...'; }
+}
+
+/* Message bubble animations */
+.message-enter {
+  animation: message-slide-in 0.3s ease-out;
+}
+
+@keyframes message-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Custom input focus */
+.input-focus {
+  @apply focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200;
+}
+
+/* Sidebar styling */
+.sidebar-chat-item {
+  @apply relative rounded-lg p-3 cursor-pointer transition-all duration-200;
+}
+
+.sidebar-chat-item:hover {
+  @apply bg-slate-50;
+}
+
+.sidebar-chat-item.active {
+  @apply bg-blue-50 border border-blue-200;
+}
+
+/* Professional form controls */
+.form-select {
+  @apply appearance-none bg-white border border-slate-300 rounded-lg px-3 py-2.5 pr-8 text-sm font-medium text-slate-700 input-focus disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.form-input {
+  @apply w-full bg-white border border-slate-300 rounded-lg px-4 py-2.5 text-sm placeholder-slate-400 input-focus disabled:opacity-50;
+}
+
+/* Responsive improvements */
+@media (max-width: 640px) {
+  .prose {
+    @apply text-sm;
+  }
+  
+  .prose h1 {
+    @apply text-xl;
+  }
+  
+  .prose h2 {
+    @apply text-lg;
+  }
+  
+  .prose h3 {
+    @apply text-base;
+  }
+}
+
+/* Chat bubble improvements */
+.chat-bubble {
+  @apply shadow-lg border border-slate-200;
+}
+
+.chat-bubble.user {
+  @apply bg-gradient-to-r from-blue-600 to-blue-700 text-white;
+}
+
+.chat-bubble.bot {
+  @apply bg-white;
+}
+
+/* Professional spacing */
+.content-padding {
+  @apply px-6 py-4;
+}
+
+.section-spacing {
+  @apply space-y-4;
+}
+
+/* Improved typography */
+.text-heading {
+  @apply text-xl font-semibold text-slate-800;
+}
+
+.text-subheading {
+  @apply text-sm font-medium text-slate-600;
+}
+
+.text-body {
+  @apply text-sm text-slate-700 leading-relaxed;
+}
+
+/* Button states */
+.btn-disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+.btn-loading {
+  @apply opacity-75 cursor-not-allowed;
+}
+
+/* Sidebar transitions */
+.sidebar-transition {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+/* Professional shadows */
+.shadow-professional {
+  @apply shadow-sm hover:shadow-md transition-shadow duration-200;
+}
+
+/* Improved borders */
+.border-professional {
+  @apply border border-slate-200;
+}
+
+/* Status indicators */
+.status-online {
+  @apply w-2 h-2 bg-green-500 rounded-full animate-pulse;
+}
+
+/* Professional color scheme */
+.bg-professional {
+  @apply bg-white;
+}
+
+.bg-gradient-professional {
+  @apply bg-gradient-to-br from-slate-50 to-blue-50;
+}
+
+/* Improved focus states */
+.focus-professional {
+  @apply focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none;
+}

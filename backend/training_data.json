@@ -1,0 +1,176 @@
+{
+  "training_data": [
+    {
+      "id": "training_20250717_215806_0",
+      "query": "test",
+      "response1": {
+        "text": "test1",
+        "temperature": 0.3,
+        "latency": 1.0,
+        "tokens_per_minute": 100.0
+      },
+      "response2": {
+        "text": "test2",
+        "temperature": 0.7,
+        "latency": 1.2,
+        "tokens_per_minute": 90.0
+      },
+      "selected_response": 1,
+      "timestamp": "2025-07-17T21:58:06.994152"
+    },
+    {
+      "id": "training_20250717_215846_1",
+      "query": "Give me the competing view on gun rights in US",
+      "response1": {
+        "text": "The competing view on gun rights in the United States primarily revolves around the advocacy for gun control, which seeks to implement more restrictive regulations on firearm ownership. Proponents of gun control argue that such measures are necessary to address the rising rates of gun violence, including mass shootings and overall gun-related deaths. They contend that stricter gun laws can lead to safer communities and have been supported by various studies indicating that states with more stringent gun regulations tend to experience lower rates of gun violence and fatalities [1][2].\n\nAdvocates for gun control often interpret the Second Amendment differently than gun rights supporters. They argue that the amendment should not be seen as an absolute right to bear arms without regulation, but rather as a provision that allows for reasonable restrictions to ensure public safety. This perspective emphasizes the need for background checks, restrictions on certain types of firearms, and measures to prevent guns from falling into the hands of individuals deemed a risk to themselves or others [4][5].\n\nAdditionally, the public health crisis associated with gun violence has been highlighted by health officials, including the U.S. surgeon general, who has called for a comprehensive approach to tackle this issue, framing it as a public health emergency rather than solely a legal or constitutional matter [1]. This view underscores the belief that gun violence is not just a criminal justice issue but also a significant health concern that requires urgent attention and action from policymakers.\n\nIn summary, the competing view on gun rights emphasizes the need for gun control measures to enhance public safety and reduce gun violence, advocating for a balanced interpretation of the Second Amendment that allows for reasonable regulations.",
+        "temperature": 0.3,
+        "latency": 11.377,
+        "tokens_per_minute": 1492.5
+      },
+      "response2": {
+        "text": "The competing view on gun rights in the United States primarily advocates for stricter gun control measures, emphasizing the need for regulations to address public safety concerns, particularly in light of rising gun violence and mass shootings. Proponents of gun control argue that the Second Amendment, while protecting the right to bear arms, should be interpreted in a way that allows for reasonable restrictions to prevent firearms from falling into the hands of individuals who may pose a danger to society.\n\nSupporters of gun control highlight several key points:\n\n1. **Public Health Crisis**: The U.S. Surgeon General has declared gun violence a public health crisis, indicating a need for urgent action to reduce gun-related deaths and injuries [1]. This perspective suggests that gun rights must be balanced with the need to protect public health and safety.\n\n2. **Impact of Regulations**: Research suggests that states with stricter gun laws tend to have lower rates of gun violence. Advocates argue that implementing common-sense measures, such as background checks, waiting periods, and restrictions on certain types of firearms, can lead to significant reductions in gun deaths [2].\n\n3. **Crime Rates Correlation**: Proponents of gun control often contend that higher levels of gun ownership correlate with increased rates of gun violence. They argue that while responsible gun ownership is important, the proliferation of firearms can escalate conflict and contribute to higher rates of homicides and suicides [4].\n\n4. **Interpretation of the Second Amendment**: The debate over the Second Amendment's meaning is central to the gun control discussion. While gun rights advocates argue for an unrestricted interpretation that favors individual ownership, gun control supporters assert that the amendment allows for regulation in the interest of public safety, reflecting the historical context of its framing [5].\n\nIn summary, the competing view on gun rights in the U.S. emphasizes the importance of implementing legal frameworks that prioritize public safety and health, advocating for responsible gun ownership while recognizing the necessity of regulations to mitigate violence and harm.",
+        "temperature": 0.7,
+        "latency": 11.377,
+        "tokens_per_minute": 1740.4
+      },
+      "selected_response": 2,
+      "timestamp": "2025-07-17T21:58:46.983641"
+    },
+    {
+      "id": "training_20250717_215847_2",
+      "query": "Give me the competing view on gun rights in US",
+      "response1": {
+        "text": "The competing view on gun rights in the United States primarily revolves around the advocacy for gun control, which seeks to implement more restrictive regulations on firearm ownership. Proponents of gun control argue that such measures are necessary to address the rising rates of gun violence, including mass shootings and overall gun-related deaths. They contend that stricter gun laws can lead to safer communities and have been supported by various studies indicating that states with more stringent gun regulations tend to experience lower rates of gun violence and fatalities [1][2].\n\nAdvocates for gun control often interpret the Second Amendment differently than gun rights supporters. They argue that the amendment should not be seen as an absolute right to bear arms without regulation, but rather as a provision that allows for reasonable restrictions to ensure public safety. This perspective emphasizes the need for background checks, restrictions on certain types of firearms, and measures to prevent guns from falling into the hands of individuals deemed a risk to themselves or others [4][5].\n\nAdditionally, the public health crisis associated with gun violence has been highlighted by health officials, including the U.S. surgeon general, who has called for a comprehensive approach to tackle this issue, framing it as a public health emergency rather than solely a legal or constitutional matter [1]. This view underscores the belief that gun violence is not just a criminal justice issue but also a significant health concern that requires urgent attention and action from policymakers.\n\nIn summary, the competing view on gun rights emphasizes the need for gun control measures to enhance public safety and reduce gun violence, advocating for a balanced interpretation of the Second Amendment that allows for reasonable regulations.",
+        "temperature": 0.3,
+        "latency": 11.377,
+        "tokens_per_minute": 1492.5
+      },
+      "response2": {
+        "text": "The competing view on gun rights in the United States primarily advocates for stricter gun control measures, emphasizing the need for regulations to address public safety concerns, particularly in light of rising gun violence and mass shootings. Proponents of gun control argue that the Second Amendment, while protecting the right to bear arms, should be interpreted in a way that allows for reasonable restrictions to prevent firearms from falling into the hands of individuals who may pose a danger to society.\n\nSupporters of gun control highlight several key points:\n\n1. **Public Health Crisis**: The U.S. Surgeon General has declared gun violence a public health crisis, indicating a need for urgent action to reduce gun-related deaths and injuries [1]. This perspective suggests that gun rights must be balanced with the need to protect public health and safety.\n\n2. **Impact of Regulations**: Research suggests that states with stricter gun laws tend to have lower rates of gun violence. Advocates argue that implementing common-sense measures, such as background checks, waiting periods, and restrictions on certain types of firearms, can lead to significant reductions in gun deaths [2].\n\n3. **Crime Rates Correlation**: Proponents of gun control often contend that higher levels of gun ownership correlate with increased rates of gun violence. They argue that while responsible gun ownership is important, the proliferation of firearms can escalate conflict and contribute to higher rates of homicides and suicides [4].\n\n4. **Interpretation of the Second Amendment**: The debate over the Second Amendment's meaning is central to the gun control discussion. While gun rights advocates argue for an unrestricted interpretation that favors individual ownership, gun control supporters assert that the amendment allows for regulation in the interest of public safety, reflecting the historical context of its framing [5].\n\nIn summary, the competing view on gun rights in the U.S. emphasizes the importance of implementing legal frameworks that prioritize public safety and health, advocating for responsible gun ownership while recognizing the necessity of regulations to mitigate violence and harm.",
+        "temperature": 0.7,
+        "latency": 11.377,
+        "tokens_per_minute": 1740.4
+      },
+      "selected_response": 2,
+      "timestamp": "2025-07-17T21:58:47.028476"
+    },
+    {
+      "id": "training_20250717_220054_3",
+      "query": "What are competing views on gay marriage in the United States.",
+      "response1": {
+        "text": "In the United States, views on gay marriage are notably divided along political lines, and this division has become more pronounced in recent years. Here are some key points reflecting the competing views:\n\n1. **Public Support Trends**: Overall, public support for same-sex marriage has increased significantly over the past few decades. As of 2024, a majority of Americans (around 69%) support the legality of same-sex marriage, with support consistently above 50% since the early 2010s. This trend reflects a broader acceptance of LGBTQ+ rights in society, with many polls indicating that support has risen sharply since the 1990s [1][2][3].\n\n2. **Political Polarization**: Despite the overall increase in support, there is a stark divide between political parties. Recent data shows a 47-percentage-point gap in support for same-sex marriage between Republicans and Democrats, the largest since Gallup began tracking this issue. While Democratic and independent support has remained relatively stable, Republican support has dipped, indicating a growing polarization [5]. \n\n3. **Regional Differences**: Support for same-sex marriage varies by state, with some states showing overwhelming support (80-81% in states like California and New York) while others, such as Mississippi, show only plurality support. This regional variation highlights differing cultural attitudes towards LGBTQ+ rights across the country [1][6].\n\n4. **Moral Perspectives**: The moral acceptability of same-sex relationships also reflects this divide. A significant portion of the population (64%) considers gay or lesbian relations morally acceptable, but this acceptance is again more pronounced among Democrats and independents compared to Republicans [2].\n\n5. **Historical Context**: The legal landscape for same-sex marriage changed dramatically with the Supreme Court's 2015 decision in Obergefell v. Hodges, which recognized the constitutional right to same-sex marriage. This ruling catalyzed a shift in public opinion, but the ongoing political debates and legislative actions at both state and federal levels continue to influence perceptions and acceptance [3][5].\n\nIn summary, while there is a clear trend towards greater acceptance of same-sex marriage in the U.S., significant political and regional divides remain, reflecting broader societal attitudes towards LGBTQ+ rights.",
+        "temperature": 0.3,
+        "latency": 13.675,
+        "tokens_per_minute": 1465.5
+      },
+      "response2": {
+        "text": "In the United States, views on gay marriage are deeply divided, reflecting a broader socio-political landscape. Over the past few decades, public opinion has shifted significantly towards greater acceptance of same-sex marriage, but substantial differences persist along political lines.\n\n1. **Public Support Trends**: As of 2024, approximately 69% of Americans support legal same-sex marriage, a figure that has steadily increased since the early 2000s. This rise in support is particularly notable among Democrats and Independents, although there has been a recent plateau in these groups' endorsement levels. In contrast, support among Republicans has declined, leading to a notable 47-percentage-point gap between Republicans and Democrats regarding this issue\u2014one of the largest recorded since polling began in the 1990s [1][5].\n\n2. **Regional Differences**: Support for same-sex marriage varies by state. While most states exhibit majority support, Mississippi remains a notable exception, reflecting the complex interplay of cultural and religious influences in different regions. Public Religion Research Institute data indicates that as of 2022, all states except Mississippi had majority support for same-sex marriage, underscoring the changing attitudes across the country [1][2].\n\n3. **Moral Acceptability**: In addition to legal recognition, a majority of Americans (64%) view gay or lesbian relations as morally acceptable, marking a significant cultural shift since the 1990s. This moral acceptance often parallels legal support, but again, there are stark differences based on political affiliation [2][3].\n\n4. **Religious and Cultural Opposition**: Despite the overall trend toward acceptance, there remains a vocal opposition, particularly among conservative and religious groups. These groups often argue against same-sex marriage on the grounds of traditional values and religious beliefs. This opposition has been a significant factor in political debates and legislative efforts to define marriage strictly as a union between one man and one woman, often invoking religious freedom arguments to justify their stance [5].\n\n5. **Legal Milestones**: The Supreme Court's 2015 decision in Obergefell v. Hodges, which legalized same-sex marriage nationwide, marked a pivotal moment in this debate. Since then, legal challenges and discussions around the implications of this ruling continue, with some states attempting to pass laws that could undermine or restrict the rights of same-sex couples [5].\n\nOverall, the views on gay marriage in the U.S. illustrate a complex landscape where increasing acceptance is often counterbalanced by strong opposition rooted in political, cultural, and religious beliefs.",
+        "temperature": 0.7,
+        "latency": 13.675,
+        "tokens_per_minute": 1684.9
+      },
+      "selected_response": 2,
+      "timestamp": "2025-07-17T22:00:54.225694"
+    },
+    {
+      "id": "training_20250717_221128_4",
+      "query": "test query",
+      "response1": {
+        "text": "test response 1",
+        "temperature": 0.3,
+        "latency": 1.0,
+        "tokens_per_minute": 100.0
+      },
+      "response2": {
+        "text": "test response 2",
+        "temperature": 0.7,
+        "latency": 1.2,
+        "tokens_per_minute": 90.0
+      },
+      "selected_response": 1,
+      "sources": [
+        {
+          "title": "Source 1",
+          "url": "https://example1.com",
+          "ranked": true
+        },
+        {
+          "title": "Source 2",
+          "url": "https://example2.com",
+          "ranked": false
+        }
+      ],
+      "timestamp": "2025-07-17T22:11:28.974046"
+    },
+    {
+      "id": "training_20250717_221241_5",
+      "query": "What is going on with trump estein saga?",
+      "response1": {
+        "text": "The ongoing saga involving Donald Trump and Jeffrey Epstein has recently intensified, particularly as Trump faces backlash from his supporters regarding transparency in the investigation into Epstein's activities. Trump has publicly criticized his own supporters, labeling them \"gullible weaklings\" for questioning the government's handling of Epstein's case, which has raised suspicions that the administration is concealing information to protect wealthy individuals associated with Epstein, including Trump himself [1][5].\n\nIn a series of posts on his social media platform, Truth Social, Trump has dismissed the Epstein narrative as a \"hoax\" perpetuated by the \"radical left\" to undermine him politically. He expressed frustration that some of his past supporters are buying into this narrative, indicating a significant rift within his base over the issue [1][5]. Additionally, Trump has threatened legal action against the Wall Street Journal for publishing a report about a birthday card he allegedly sent to Epstein, claiming the letter was fabricated and not reflective of his language or style [3].\n\nThe controversy has not only divided Trump's supporters but has also drawn media scrutiny, with outlets like Fox News acknowledging that the story is unlikely to fade away anytime soon. Trump's call for the release of documents related to Epstein's case suggests he is attempting to distance himself from the scandal while simultaneously trying to quell the unrest among his supporters [2][4].",
+        "temperature": 0.3,
+        "latency": 5.048,
+        "tokens_per_minute": 2650.5
+      },
+      "response2": {
+        "text": "The ongoing saga involving Donald Trump and Jeffrey Epstein has escalated recently, creating significant division among Trump's supporters. Trump has publicly condemned his own followers who are questioning the transparency of investigations related to Epstein, branding them as \"gullible weaklings\" and dismissing their concerns as part of a \"radical left\" conspiracy to discredit him. He refers to this situation as the \"Jeffrey Epstein Hoax\" and has expressed frustration that former supporters are buying into these claims, suggesting they are doing the Democrats' work for them [1][5].\n\nIn a recent post on his social media platform, Truth Social, Trump accused the media, particularly the Wall Street Journal and Rupert Murdoch, of publishing false information related to his connections with Epstein, including an alleged salacious birthday card sent to Epstein. Trump vehemently denied the authenticity of the letter and threatened legal action against the newspaper for what he called a \"fake story\" [3]. He has also called for his Attorney General to release any credible documents concerning Epstein, indicating a desire to clear his name amid these persistent allegations [2].\n\nThe Epstein case continues to attract public interest, not only due to its implications for high-profile figures but also because of the conspiracy theories that have proliferated around it. Trump's dismissal of the topic as a hoax has not quelled the skepticism among some factions of his support base, leading to a complicated dynamic for him politically [4][5].",
+        "temperature": 0.7,
+        "latency": 5.048,
+        "tokens_per_minute": 2805.0
+      },
+      "selected_response": 2,
+      "sources": [
+        {
+          "title": "Trump calls Epstein conspiracy a \u2018hoax\u2019 and turns on Maga \u2018weaklings\u2019 | Donald Trump | The Guardian",
+          "url": "https://www.theguardian.com/us-news/2025/jul/16/donald-trump-dismisses-inquiry-into-jeffrey-epstein-as-boring",
+          "ranked": true
+        },
+        {
+          "title": "Bret Baier Opens With Trump-Epstein Saga: Not Going Away",
+          "url": "https://www.mediaite.com/media/tv/this-storys-not-going-away-bret-baier-opens-show-reporting-on-trumps-epstein-files-saga/",
+          "ranked": true
+        },
+        {
+          "title": "Trump goes nuclear on Rupert Murdoch after his 'filthy rag' publishes letter to Epstein while calling for Bondi to clear his name | Daily Mail Online",
+          "url": "https://www.dailymail.co.uk/news/article-14917113/trump-nuclear-rupert-murdoch-wall-street-journal-epstein-letter.html",
+          "ranked": true
+        }
+      ],
+      "timestamp": "2025-07-17T22:12:41.175198"
+    },
+    {
+      "id": "training_20250718_000153_6",
+      "query": "How is it going on with your stuff?",
+      "response1": {
+        "text": "It sounds like you're dealing with a common struggle many people face: having too much stuff and feeling overwhelmed by it. If you're looking to declutter but find it difficult to part with items you like, here are some strategies that might help:\n\n1. **Start Small**: Instead of trying to tackle everything at once, focus on one area or category of items at a time. This could be a single drawer, a shelf, or a specific type of item, like clothes or knick-knacks. Breaking it down into manageable tasks can make the process less daunting [1].\n\n2. **Set Criteria for Keeping Items**: Consider establishing specific criteria for what to keep. For example, you might decide to keep only items that you use regularly, have significant sentimental value, or truly bring you joy. This can help you make more objective decisions about what to let go of [5].\n\n3. **Try the \"One In, One Out\" Rule**: For every new item you bring into your space, consider removing one item. This can help maintain a balance and prevent further accumulation of stuff [4].\n\n4. **Consider Donation or Selling**: If you have items that are in good condition but that you no longer need, consider donating them to a local charity or selling them online. This can make parting with items easier, knowing they will be useful to someone else [1].\n\n5. **Reflect on Your Attachment**: Sometimes, we hold onto items due to emotional attachments or the idea that we might need them someday. Reflecting on why you feel attached to certain items can help you understand if they truly serve a purpose in your life [4].\n\n6. **Seek Support**: If you're struggling with the emotional aspects of decluttering, consider reaching out to friends or family for support. They can provide encouragement and help you make decisions about what to keep or let go of [5].\n\nRemember, decluttering is a process, and it's okay to take your time with it. Each small step you take can lead to a more organized and peaceful living space.",
+        "temperature": 0.3,
+        "latency": 8.711,
+        "tokens_per_minute": 2355.6
+      },
+      "response2": {
+        "text": "It sounds like you're dealing with a significant amount of clutter and the challenge of deciding what to do with it. This is a common issue for many people, especially when they have emotional attachments to their belongings or simply feel overwhelmed by the volume of items they possess.\n\nHere are some strategies that might help you start decluttering:\n\n1. **Set Clear Goals**: Define what you want to achieve. Do you want to reduce the number of items in a specific room, or are you aiming for a more minimalist lifestyle overall? Setting clear goals can guide your decisions.\n\n2. **Categorize Your Items**: Break down your belongings into categories (clothes, knick-knacks, books, etc.). This can help you focus on one type of item at a time, making the process feel less daunting [1].\n\n3. **Use the \"One In, One Out\" Rule**: For each new item you bring into your space, try to remove one. This can help prevent future accumulation and encourage you to be more intentional about what you keep [4].\n\n4. **Evaluate Emotional Attachments**: If you're struggling to let go of items because of sentimental value, consider taking photos of them instead. This way, you preserve the memory without needing to keep the physical object [1].\n\n5. **Start Small**: Tackle one drawer, one shelf, or one corner at a time. Small successes can motivate you to continue [5].\n\n6. **Consider Donation or Selling**: If you have items that are still in good condition, think about donating them to local charities or selling them online. This can make it easier to part with things if you know they\u2019ll be used by someone else [1].\n\n7. **Accept That It's a Process**: Understand that decluttering is not a one-time event but an ongoing process. It's normal to feel the need to purge regularly, as our belongings can accumulate over time [4].\n\nIf you're feeling particularly overwhelmed by the decluttering process, it might be helpful to reach out to friends or professionals who specialize in organizing. They can provide support and offer fresh perspectives on what to keep or let go of.",
+        "temperature": 0.7,
+        "latency": 8.711,
+        "tokens_per_minute": 2410.7
+      },
+      "selected_response": 2,
+      "sources": [
+        {
+          "title": "A Guide to Getting Rid of Almost Everything | The New Yorker",
+          "url": "https://www.newyorker.com/magazine/2022/02/28/a-guide-to-getting-rid-of-almost-everything-decluttering",
+          "ranked": true
+        },
+        {
+          "title": "r/declutter on Reddit: I have SO much stuff",
+          "url": "https://www.reddit.com/r/declutter/comments/v193ad/i_have_so_much_stuff/",
+          "ranked": true
+        },
+        {
+          "title": "Coming to Terms With Your Stuff",
+          "url": "https://nosidebar.com/coming-to-terms-with-your-stuff/",
+          "ranked": true
+        }
+      ],
+      "timestamp": "2025-07-18T00:01:53.427559"
+    }
+  ]
+}

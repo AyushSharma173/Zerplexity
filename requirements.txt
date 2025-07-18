@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+pydantic
+python-dotenv
+httpx
+openai
+readability-lxml
+beautifulsoup4
+lxml
+lxml-html-clean
+sentence-transformers

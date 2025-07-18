@@ -1,0 +1,35 @@
+{
+  "query": "python programming",
+  "results": [
+    {
+      "title": "Welcome to Python.org",
+      "url": "https://www.python.org/",
+      "snippet": "The official home of the <strong>Python</strong> <strong>Programming</strong> Language",
+      "source": "python.org"
+    },
+    {
+      "title": "Python For Beginners | Python.org",
+      "url": "https://www.python.org/about/gettingstarted/",
+      "snippet": "The official home of the <strong>Python</strong> <strong>Programming</strong> Language",
+      "source": "python.org"
+    },
+    {
+      "title": "Introduction to Python",
+      "url": "https://www.w3schools.com/python/python_intro.asp",
+      "snippet": "<strong>Python</strong> is a popular <strong>programming</strong> language.",
+      "source": "w3schools.com"
+    },
+    {
+      "title": "Python (programming language) - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Python_(programming_language)",
+      "snippet": "<strong>Python</strong> is a high-level, general-purpose <strong>programming</strong> language. Its design philosophy emphasizes code readability with the use of significant indentation. <strong>Python</strong> is dynamically type-checked and garbage-collected. It supports multiple <strong>programming</strong> paradigms, including structured (particularly ...",
+      "source": "en.wikipedia.org"
+    },
+    {
+      "title": "Google's Python Class | Python Education | Google for Developers",
+      "url": "https://developers.google.com/edu/python",
+      "snippet": "Welcome to Google&#x27;s <strong>Python</strong> Class -- this is a free class for people with a little bit of <strong>programming</strong> experience who want to learn <strong>Python</strong>. The class includes written materials, lecture videos, and lots of code exercises to practice <strong>Python</strong> coding. These materials are used within Google to introduce ...",
+      "source": "developers.google.com"
+    }
+  ]
+}
