@@ -12,7 +12,7 @@ const BASE = 'http://127.0.0.1:8000';
  *   {type:'training_comparison', response1:{...}, response2:{...}} - Training comparison
  *   {type:'training_end'} - Training mode ended
  */
-export async function askStream(query, mode = 'vanilla', model = 'gpt4o', count = 5, training = false) {
+export async function askStream(query, mode = 'vanilla', model = 'gpt4o', count = 5, training = false, queryGenerator = 'gpt4o') {
   const params = new URLSearchParams({
     q: query,
     mode,
@@ -20,6 +20,7 @@ export async function askStream(query, mode = 'vanilla', model = 'gpt4o', count 
     count: String(count),
     stream: 'true',
     training: String(training),
+    query_generator: queryGenerator,
   });
   const res = await fetch(`${BASE}/answer?${params.toString()}`);
   if (!res.ok) throw new Error(`Backend error ${res.status}`);

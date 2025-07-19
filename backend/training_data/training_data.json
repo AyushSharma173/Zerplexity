@@ -1,0 +1,109 @@
+{
+  "training_data": [
+    {
+      "id": "training_20250719_133509_0",
+      "query": "How is andrew tate's arrest in romania doing?",
+      "response1": {
+        "text": "Andrew Tate, a controversial social media influencer and former professional kickboxer, was arrested in Romania along with his brother Tristan Tate [2]. They face charges of human trafficking, rape, and forming a criminal group to sexually exploit women in Romania [2]. Initially, a judge approved their extradition to the UK, where they face charges of sexual aggression, but they will not be sent to the UK until after they face trial in Romania [2].\n\nHowever, in a recent update, it was reported that the travel ban on the Tate brothers was lifted, and they arrived in the United States on Thursday [3][8]. Andrew Tate stated that he and his brother are \"largely misunderstood\" and have no criminal record anywhere on the planet [3][8].\n\nIt's worth noting that Andrew Tate has a history of making controversial statements, including describing himself as a misogynist and expressing admiration for Romania's more traditional society [9]. However, his actions have caught up with him, and he now faces serious charges in Romania [9].\n\nThe case has sparked widespread interest and concern, with many watching to see how the Romanian authorities will handle the case and whether they will bow to pressure from the US administration [7].",
+        "temperature": 0.3,
+        "latency": 15.471,
+        "tokens_per_minute": 779.5
+      },
+      "response2": {
+        "text": "Andrew Tate, a controversial social media influencer and former professional kickboxer, was arrested in Romania along with his brother Tristan Tate [2]. They face charges of human trafficking, rape, and forming a criminal group to sexually exploit women in Romania [2]. Initially, a judge approved their extradition to the UK, where they face charges of sexual aggression, but they will not be sent to the UK until after they face trial in Romania [2].\n\nHowever, in a recent update, it was reported that the travel ban on the Tate brothers was lifted, and they arrived in the United States on Thursday [3][8]. Andrew Tate stated that he and his brother are \"largely misunderstood\" and have no criminal record anywhere on the planet [3][8].\n\nIt's worth noting that Andrew Tate has a history of making controversial statements, including describing himself as a misogynist and expressing admiration for Romania's more traditional society [9]. However, his actions have caught up with him, and he now faces serious charges in Romania [9].\n\nThe case has sparked widespread interest and concern, with many watching to see how the Romanian authorities will handle the case and whether they will bow to pressure from the US administration [7].",
+        "temperature": 0.7,
+        "latency": 15.471,
+        "tokens_per_minute": 779.5
+      },
+      "selected_response": 1,
+      "sources": [
+        {
+          "title": "What to Know About the Accusations Against Andrew Tate - The New York Times",
+          "url": "https://www.nytimes.com/article/andrew-tate-arrests-explained.html",
+          "ranked": true
+        },
+        {
+          "title": "Andrew Tate, charged with rape and trafficking in Romania, returns to the U.S.",
+          "url": "https://www.nbcnews.com/news/world/andrew-tate-tristan-romania-rape-trafficking-travel-ban-us-rcna193959",
+          "ranked": true
+        },
+        {
+          "title": "Why did Andrew Tate choose Romania? | The Lead",
+          "url": "https://thelead.uk/why-did-andrew-tate-choose-romania",
+          "ranked": true
+        }
+      ],
+      "timestamp": "2025-07-19T13:35:09.592486"
+    },
+    {
+      "id": "training_20250719_161706_1",
+      "query": "How is elon musks recent work at XAI going?",
+      "response1": {
+        "text": "Elon Musk's recent work at xAI has been marked by significant developments and controversies. On the one hand, xAI has released its latest flagship AI model, Grok 4, which Musk claims is better than PhD level in every subject, with no exceptions [2]. The company has also signed a $200 million contract with the US Department of Defense to develop AI agent workflows across various mission areas [3][12]. Additionally, xAI has launched a new division, \"Grok with Government,\" and has been added to the General Services Administration schedule, making its products available for purchase across every government office and agency [3].\n\nOn the other hand, xAI has faced criticism from AI safety researchers from OpenAI, Anthropic, and other organizations, who have spoken out against the company's \"reckless\" and \"completely irresponsible\" safety culture [9][11]. The company's AI chatbot, Grok, has been involved in several scandals, including spouting antisemitic comments and repeatedly calling itself \"MechaHitler\" [9][11]. Furthermore, xAI has launched AI companions that take the form of a hyper-sexualized anime girl, which has raised concerns about the company's approach to AI development [9][11].\n\nDespite these controversies, xAI has made significant progress in its development of AI technology, and its contract with the US Department of Defense is a major milestone for the company. However, the company's safety culture and approach to AI development remain a subject of concern for many in the AI research community.",
+        "temperature": 0.3,
+        "latency": 16.048,
+        "tokens_per_minute": 871.1
+      },
+      "response2": {
+        "text": "Elon Musk's recent work at xAI has been marked by significant developments and controversies. On the one hand, xAI has released its latest flagship AI model, Grok 4, which Musk claims is better than PhD level in every subject, with no exceptions [2]. The company has also signed a $200 million contract with the US Department of Defense to develop AI agent workflows across various mission areas [3][12]. Additionally, xAI has launched a new division, \"Grok with Government,\" and has been added to the General Services Administration schedule, making its products available for purchase across every government office and agency [3].\n\nOn the other hand, xAI has faced criticism from AI safety researchers from OpenAI, Anthropic, and other organizations, who have spoken out against the company's \"reckless\" and \"completely irresponsible\" safety culture [9][11]. The company's AI chatbot, Grok, has been involved in several scandals, including spouting antisemitic comments and repeatedly calling itself \"MechaHitler\" [9][11]. Furthermore, xAI has launched AI companions that take the form of a hyper-sexualized anime girl, which has raised concerns about the company's approach to AI development [9][11].\n\nDespite these controversies, xAI has made significant progress in its development of AI technology, and its contract with the US Department of Defense is a major milestone for the company. However, the company's safety culture and approach to AI development remain a subject of concern for many in the AI research community.",
+        "temperature": 0.7,
+        "latency": 16.048,
+        "tokens_per_minute": 871.1
+      },
+      "selected_response": 1,
+      "sources": [
+        {
+          "title": "Elon Musk spent months slashing federal contracts \u2014 Now his AI company is celebrating a $200M Pentagon contract and new unit to get government business | Fortune",
+          "url": "https://fortune.com/2025/07/14/elon-musk-doge-cuts-federal-contracts-xai-grok-for-government-200-million-contract-defense-department/",
+          "ranked": true
+        },
+        {
+          "title": "Elon Musk's Dating History: From Amber Heard to Grimes",
+          "url": "https://people.com/elon-musk-complete-dating-history-7502497",
+          "ranked": true
+        },
+        {
+          "title": "Inside Elon Musk's Relationship History - Newsweek",
+          "url": "https://www.newsweek.com/entertainment/celebrity-news/elon-musk-relationship-marriage-history-2018037",
+          "ranked": true
+        }
+      ],
+      "timestamp": "2025-07-19T16:17:06.615058"
+    },
+    {
+      "id": "training_20250719_170953_2",
+      "query": "How is Gavin Kliger at DOGE doing? is he still working and where he at?",
+      "response1": {
+        "text": "According to the available information, Gavin Kliger is currently serving as a special adviser to the director for information technology of the United States Office of Personnel Management (OPM) and within the Department of Government Efficiency (DOGE) [13]. He was previously a software engineer at Databricks and LinkedIn [13]. Kliger joined DOGE after graduating from the University of California, Berkeley, in 2020 [3][13].\n\nIt appears that Kliger is still working with DOGE, as there is no indication of him leaving the organization. In fact, recent reports suggest that he was part of the DOGE team inside the Consumer Financial Protection Bureau (CFPB), where he allegedly managed the April reduction-in-force (RIF) that attempted to cut close to 90% of the agency's workforce [1][4][8][15].\n\nIt's worth noting that Kliger has been involved in some controversy, with reports suggesting that he and other DOGE team members obtained access to CFPB data and allegedly worked to illegally gut the agency [1][4][8][15]. However, the exact nature and outcome of these events are not clear from the available information.",
+        "temperature": 0.3,
+        "latency": 12.882,
+        "tokens_per_minute": 805.8
+      },
+      "response2": {
+        "text": "According to the available information, Gavin Kliger is currently serving as a special adviser to the director for information technology of the United States Office of Personnel Management (OPM) and within the Department of Government Efficiency (DOGE) [13]. He was previously a software engineer at Databricks and LinkedIn [13]. Kliger joined DOGE after graduating from the University of California, Berkeley, in 2020 [3][13].\n\nIt appears that Kliger is still working with DOGE, as there is no indication of him leaving the organization. In fact, recent reports suggest that he was part of the DOGE team inside the Consumer Financial Protection Bureau (CFPB), where he allegedly managed the April reduction-in-force (RIF) that attempted to cut close to 90% of the agency's workforce [1][4][8][15].\n\nIt's worth noting that Kliger has been involved in some controversy, with reports suggesting that he and other DOGE team members obtained access to CFPB data and allegedly worked to illegally gut the agency [1][4][8][15]. However, the exact nature and outcome of these events are not clear from the available information.",
+        "temperature": 0.7,
+        "latency": 12.882,
+        "tokens_per_minute": 805.8
+      },
+      "selected_response": 1,
+      "sources": [
+        {
+          "title": "Revolving Door Project | DOGE Agent: Gavin Kliger | Revolving Door Project",
+          "url": "https://therevolvingdoorproject.org/doge-agent-gavin-kliger/",
+          "ranked": true
+        },
+        {
+          "title": "DOGE\u2019s Gavin Kliger Received Conflict Warnings Before CFPB Firings \u2014 ProPublica",
+          "url": "https://www.propublica.org/article/cfpb-gavin-kliger-doge-conflict-of-interest-consumer-financial-protection-bureau",
+          "ranked": true
+        },
+        {
+          "title": "Luenell - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Luenell",
+          "ranked": true
+        }
+      ],
+      "timestamp": "2025-07-19T17:09:53.442666"
+    }
+  ]
+}

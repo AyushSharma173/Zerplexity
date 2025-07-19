@@ -31,7 +31,9 @@ export default function App() {
   const [query, setQuery] = useState('');
   const [mode, setMode] = useState('vanilla');
   const [model, setModel] = useState('gpt4o');
+  const [queryGenerator, setQueryGenerator] = useState('gpt4o');
   const [training, setTraining] = useState(false);
+  const [showAdvanced, setShowAdvanced] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -117,17 +119,134 @@ export default function App() {
       });
 
       if (response.ok) {
+        // Also save query rewriting training data
+        await saveQueryRewritingTrainingData();
+        
+        // Save reranker training data
+        await saveRerankerTrainingData();
+        
         // Hide source selection and clear state
         setShowSourceSelection(false);
         setSelectedSources([]);
         setCurrentTrainingId(null);
-        alert('Source rankings saved successfully!');
+        alert('Source rankings and query rewriting training data saved successfully!');
       } else {
         throw new Error('Failed to save source rankings');
       }
     } catch (error) {
       console.error('Error saving source rankings:', error);
       alert('Failed to save source rankings. Please try again.');
+    }
+  };
+
+  // Save query rewriting training data
+  const saveQueryRewritingTrainingData = async () => {
+    console.log('🔄 Attempting to save query rewriting training data...');
+    try {
+      // Find the current training message to get query generation data
+      const currentMessages = chats[currentChatId]?.messages || [];
+      
+      // Look for any message that has queryGeneration data (could be training or converted regular message)
+      const messageWithQueryGeneration = currentMessages.find(msg => 
+        msg.role === 'bot' && msg.queryGeneration
+      );
+
+      if (!messageWithQueryGeneration || !messageWithQueryGeneration.queryGeneration) {
+        console.log('No query generation data found');
+        console.log('Available messages:', currentMessages.map(msg => ({
+          role: msg.role,
+          training: msg.training,
+          hasQueryGeneration: !!msg.queryGeneration
+        })));
+        return;
+      }
+
+      const { original_query, query_source_mapping } = messageWithQueryGeneration.queryGeneration;
+      
+      // Get the URLs of selected sources
+      const selectedSourceUrls = selectedSources.map(source => source.url);
+      
+      // Find which queries led to the selected sources
+      const queryRewritingData = {
+        original_query: original_query,
+        selected_sources: selectedSourceUrls,
+        query_source_mapping: query_source_mapping,
+        query_generator: queryGenerator, // Current query generator used
+        timestamp: new Date().toISOString()
+      };
+
+      const response = await fetch('http://localhost:8000/save_query_rewriting_training', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(queryRewritingData)
+      });
+
+      if (response.ok) {
+        console.log('Query rewriting training data saved successfully');
+      } else {
+        console.error('Failed to save query rewriting training data');
+      }
+    } catch (error) {
+      console.error('Error saving query rewriting training data:', error);
+    }
+  };
+
+  // Save reranker training data
+  const saveRerankerTrainingData = async () => {
+    console.log('🔄 Attempting to save reranker training data...');
+    try {
+      // Find the current training message to get all sources
+      const currentMessages = chats[currentChatId]?.messages || [];
+      
+      // Look for any message that has sources (could be training or converted regular message)
+      const messageWithSources = currentMessages.find(msg => 
+        msg.role === 'bot' && msg.sources && msg.sources.length > 0
+      );
+
+      if (!messageWithSources || !messageWithSources.sources) {
+        console.log('No sources data found');
+        return;
+      }
+
+      // Get all sources from the message
+      const allSources = messageWithSources.sources;
+      
+      // Get the URLs of selected sources (positive examples)
+      const positiveSourceUrls = selectedSources.map(source => source.url);
+      
+      // Get the URLs of remaining sources (negative examples)
+      const negativeSourceUrls = allSources
+        .filter(source => !positiveSourceUrls.includes(source.url))
+        .map(source => source.url);
+      
+      // Get the original query
+      const originalQuery = currentMessages.find(msg => msg.role === 'user')?.content || "Unknown query";
+      
+      const rerankerData = {
+        query: originalQuery,
+        all_sources: allSources,
+        positive_sources: positiveSourceUrls,
+        negative_sources: negativeSourceUrls,
+        timestamp: new Date().toISOString()
+      };
+
+      const response = await fetch('http://localhost:8000/save_reranker_training', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(rerankerData)
+      });
+
+      if (response.ok) {
+        console.log('Reranker training data saved successfully');
+      } else {
+        console.error('Failed to save reranker training data');
+      }
+    } catch (error) {
+      console.error('Error saving reranker training data:', error);
     }
   };
 
@@ -195,7 +314,9 @@ export default function App() {
               response: undefined,
               comparison: undefined,
               // Store training ID for source ranking
-              trainingId: trainingId
+              trainingId: trainingId,
+              // Preserve query generation data for later use
+              queryGeneration: selectedMessage.queryGeneration
             };
             
             // Remove all training messages and replace with the selected one
@@ -284,7 +405,7 @@ export default function App() {
     }
 
     try {
-      for await (const evt of await askStream(q, m, model, 5, training)) {
+      for await (const evt of await askStream(q, m, model, 5, training, queryGenerator)) {
         if (evt.type === 'sources') {
           setChats(prev => {
             const copy = { ...prev };
@@ -296,6 +417,19 @@ export default function App() {
             }
             return copy;
           });
+        } else if (evt.type === 'query_generation') {
+          // Store query generation info and mapping for training
+          setChats(prev => {
+            const copy = { ...prev };
+            if (training) {
+              copy[currentChatId].messages[botIndex].queryGeneration = evt;
+              copy[currentChatId].messages[botIndex + 1].queryGeneration = evt;
+            } else {
+              copy[currentChatId].messages[botIndex].queryGeneration = evt;
+            }
+            return copy;
+          });
+          console.log('Query generation:', evt);
         } else if (evt.type === 'token') {
           setChats(prev => {
             const copy = { ...prev };
@@ -333,9 +467,10 @@ export default function App() {
             if (training) {
               copy[currentChatId].messages[botIndex].content = evt.response1.answer;
               copy[currentChatId].messages[botIndex + 1].content = evt.response2.answer;
+            } else {
+              // In production mode, store metrics
+              copy[currentChatId].messages[botIndex].metrics = evt.metrics;
             }
-            // In production mode, don't overwrite the content since it was already streamed
-            // The content is already accumulated from the streaming tokens
             return copy;
           });
         }
@@ -483,7 +618,7 @@ export default function App() {
                       Training
                     </button>
                   </div>
-                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -534,7 +669,7 @@ export default function App() {
                         onSelection={handleTrainingSelection}
                       />
                     ) : (
-                  <BotBubble text={m.content} sources={m.sources} mode={m.mode} />
+                  <BotBubble text={m.content} sources={m.sources} mode={m.mode} metrics={m.metrics} />
                     )}
                 </div>
               )
@@ -579,7 +714,11 @@ export default function App() {
             onModeChange={setMode}
             model={model} 
             onModelChange={setModel}
-              disabled={!currentChatId}
+            queryGenerator={queryGenerator}
+            onQueryGeneratorChange={setQueryGenerator}
+            showAdvanced={showAdvanced}
+            onToggleAdvanced={() => setShowAdvanced(!showAdvanced)}
+            disabled={!currentChatId}
           />
         </div>
       </div>
@@ -697,13 +836,15 @@ function UserBubble({ text }) {
   );
 }
 
-function BotBubble({ text, sources = [], mode }) {
+function BotBubble({ text, sources = [], mode, metrics }) {
   return (
     <div className="flex justify-start">
       <div className="max-w-2xl lg:max-w-3xl">
         <div className="bg-white border border-slate-200 px-6 py-4 rounded-2xl rounded-bl-md shadow-lg">
+          {/* Header with mode and metrics */}
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center space-x-2">
           {mode && (
-            <div className="mb-3">
               <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                 mode === 'vanilla' 
                   ? 'bg-blue-100 text-blue-800' 
@@ -711,8 +852,20 @@ function BotBubble({ text, sources = [], mode }) {
               }`}>
                 {mode === 'vanilla' ? 'Vanilla Retrieval' : 'Reranker Retrieval'}
               </span>
+              )}
+            </div>
+            
+            {/* Metrics */}
+            {metrics && (
+              <div className="flex items-center space-x-3 text-xs text-slate-500">
+                <span>Latency: {metrics.latency}s</span>
+                <span>TTFT: {metrics.ttft}s</span>
+                <span>Speed: {metrics.tokens_per_minute} tokens/min</span>
+                <span>Tokens: {metrics.total_tokens}</span>
             </div>
           )}
+          </div>
+          
           <RenderAnswer text={text} sources={sources} />
         </div>
         <div className="flex items-center mt-2 space-x-1">
@@ -763,7 +916,9 @@ function TrainingBubble({ text, sources = [], mode, response, comparison, onSele
             {comparison && (
               <div className="flex items-center space-x-3 text-xs text-slate-500">
                 <span>Latency: {comparison[`response${response}`].latency}s</span>
+                <span>TTFT: {comparison[`response${response}`].ttft}s</span>
                 <span>Speed: {comparison[`response${response}`].tokens_per_minute} tokens/min</span>
+                <span>Tokens: {comparison[`response${response}`].total_tokens}</span>
                 <span>Temp: {comparison[`response${response}`].temperature}</span>
               </div>
             )}
@@ -809,9 +964,10 @@ function TrainingBubble({ text, sources = [], mode, response, comparison, onSele
 
 /* ---------- Input ---------- */
 
-function ChatInput({ value, onChange, onSubmit, loading, mode, onModeChange, model, onModelChange, disabled }) {
+function ChatInput({ value, onChange, onSubmit, loading, mode, onModeChange, model, onModelChange, queryGenerator, onQueryGeneratorChange, showAdvanced, onToggleAdvanced, disabled }) {
   return (
     <div className="max-w-4xl mx-auto">
+      {/* Main Input Row */}
     <div className="flex flex-col sm:flex-row gap-3">
       {/* Mode Selector */}
       <div className="relative">
@@ -831,23 +987,18 @@ function ChatInput({ value, onChange, onSubmit, loading, mode, onModeChange, mod
         </div>
       </div>
 
-        {/* Model Selector */}
-      <div className="relative">
-        <select
-            className="appearance-none bg-white border border-slate-300 rounded-lg px-3 py-2.5 pr-8 text-sm font-medium text-slate-700 input-focus disabled:opacity-50 min-w-[140px]"
-            disabled={loading || disabled}
-          value={model}
-          onChange={e => onModelChange(e.target.value)}
+        {/* Advanced Options Button */}
+        <button
+          onClick={onToggleAdvanced}
+          disabled={loading || disabled}
+          className="flex items-center space-x-2 px-3 py-2.5 text-sm font-medium text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-            <option value="gpt4o">GPT‑4o mini</option>
-            <option value="llama">Llama 80B</option>
-        </select>
-        <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-          <svg className="w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
-        </div>
-      </div>
+          <span>Advanced</span>
+        </button>
 
       {/* Input Field */}
       <div className="flex-1 relative">
@@ -887,6 +1038,63 @@ function ChatInput({ value, onChange, onSubmit, loading, mode, onModeChange, mod
         )}
       </button>
       </div>
+
+      {/* Advanced Options Panel */}
+      {showAdvanced && (
+        <div className="mt-3 p-4 bg-slate-50 border border-slate-200 rounded-lg">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-sm font-medium text-slate-700">Advanced Options</h3>
+            <button
+              onClick={onToggleAdvanced}
+              className="text-slate-400 hover:text-slate-600"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Model Selector */}
+            <div className="relative">
+              <label className="block text-xs font-medium text-slate-600 mb-1">Language Model</label>
+              <select
+                className="w-full appearance-none bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-700 input-focus disabled:opacity-50"
+                disabled={loading || disabled}
+                value={model}
+                onChange={e => onModelChange(e.target.value)}
+              >
+                <option value="gpt4o">GPT‑4o mini</option>
+                <option value="llama">Llama 80B</option>
+              </select>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                <svg className="w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Query Generator Selector */}
+            <div className="relative">
+              <label className="block text-xs font-medium text-slate-600 mb-1">Query Generation</label>
+              <select
+                className="w-full appearance-none bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-700 input-focus disabled:opacity-50"
+                disabled={loading || disabled}
+                value={queryGenerator}
+                onChange={e => onQueryGeneratorChange(e.target.value)}
+              >
+                <option value="gpt4o">GPT-4o Query</option>
+                <option value="t5">T5 Query</option>
+              </select>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                <svg className="w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

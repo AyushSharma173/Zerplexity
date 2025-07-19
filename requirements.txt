@@ -9,3 +9,4 @@ beautifulsoup4
 lxml
 lxml-html-clean
 sentence-transformers
+sentencepiece

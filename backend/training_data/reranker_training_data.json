@@ -1,0 +1,231 @@
+{
+  "reranker_data": [
+    {
+      "query": "How is elon musks recent work at XAI going?",
+      "all_sources": [
+        {
+          "title": "xAI (company) - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/XAI_(company)",
+          "query_used": "How is elon musks recent work at XAI going?",
+          "reasoning": "Original user query"
+        },
+        {
+          "title": "Elon Musk's xAI launches Grok 4 alongside a $300 monthly subscription | TechCrunch",
+          "url": "https://techcrunch.com/2025/07/09/elon-musks-xai-launches-grok-4-alongside-a-300-monthly-subscription/",
+          "query_used": "How is elon musks recent work at XAI going?",
+          "reasoning": "Original user query"
+        },
+        {
+          "title": "Elon Musk spent months slashing federal contracts \u2014 Now his AI company is celebrating a $200M Pentagon contract and new unit to get government business | Fortune",
+          "url": "https://fortune.com/2025/07/14/elon-musk-doge-cuts-federal-contracts-xai-grok-for-government-200-million-contract-defense-department/",
+          "query_used": "How is elon musks recent work at XAI going?",
+          "reasoning": "Original user query"
+        },
+        {
+          "title": "Elon Musk's Dating History: From Amber Heard to Grimes",
+          "url": "https://people.com/elon-musk-complete-dating-history-7502497",
+          "query_used": "how has elon and musks new relationship turned out?",
+          "reasoning": "T5 reformulation 1"
+        },
+        {
+          "title": "Inside Elon Musk's Relationship History - Newsweek",
+          "url": "https://www.newsweek.com/entertainment/celebrity-news/elon-musk-relationship-marriage-history-2018037",
+          "query_used": "how has elon and musks new relationship turned out?",
+          "reasoning": "T5 reformulation 1"
+        },
+        {
+          "title": "Trump\u2019s Relationship With Musk Remains Icy as Public Spat Goes Private - The New York Times",
+          "url": "https://www.nytimes.com/live/2025/06/06/us/elon-musk-trump-feud",
+          "query_used": "how has elon and musks new relationship turned out?",
+          "reasoning": "T5 reformulation 1"
+        },
+        {
+          "title": "xAI (company) - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/XAI_(company)",
+          "query_used": "musks recent work at XAI did not go as planned",
+          "reasoning": "T5 reformulation 2"
+        },
+        {
+          "title": "Musk says Grok chatbot was 'manipulated' into praising Hitler",
+          "url": "https://www.bbc.com/news/articles/c4g8r34nxeno",
+          "query_used": "musks recent work at XAI did not go as planned",
+          "reasoning": "T5 reformulation 2"
+        },
+        {
+          "title": "OpenAI and Anthropic researchers decry 'reckless' safety culture at Elon Musk's xAI | TechCrunch",
+          "url": "https://techcrunch.com/2025/07/16/openai-and-anthropic-researchers-decry-reckless-safety-culture-at-elon-musks-xai/",
+          "query_used": "musks recent work at XAI did not go as planned",
+          "reasoning": "T5 reformulation 2"
+        },
+        {
+          "title": "xAI (company) - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/XAI_(company)",
+          "query_used": "what has elon musk done at XAI",
+          "reasoning": "T5 reformulation 3"
+        },
+        {
+          "title": "OpenAI and Anthropic researchers decry 'reckless' safety culture at Elon Musk's xAI | TechCrunch",
+          "url": "https://techcrunch.com/2025/07/16/openai-and-anthropic-researchers-decry-reckless-safety-culture-at-elon-musks-xai/",
+          "query_used": "what has elon musk done at XAI",
+          "reasoning": "T5 reformulation 3"
+        },
+        {
+          "title": "xAI announces $200m US military deal after Grok chatbot had Nazi meltdown | US military | The Guardian",
+          "url": "https://www.theguardian.com/technology/2025/jul/14/us-military-xai-deal-elon-musk",
+          "query_used": "what has elon musk done at XAI",
+          "reasoning": "T5 reformulation 3"
+        },
+        {
+          "title": "Elon Musk - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Elon_Musk",
+          "query_used": "thomas musk is in the chinese army medical corps",
+          "reasoning": "T5 reformulation 4"
+        },
+        {
+          "title": "r/Military on Reddit: Musk Set to Get Access to Top-Secret U.S. Plan for Potential War With China (totally normal thing for a foreigner with no military background and business ties in China to get, btw)",
+          "url": "https://www.reddit.com/r/Military/comments/1jg5d0a/musk_set_to_get_access_to_topsecret_us_plan_for/",
+          "query_used": "thomas musk is in the chinese army medical corps",
+          "reasoning": "T5 reformulation 4"
+        },
+        {
+          "title": "Trump just said on national TV Musk\u2019s next assignment is extracting billions and billions of dollars from the Military. : Military",
+          "url": "https://old.reddit.com/r/Military/comments/1iloocu/trump_just_said_on_national_tv_musks_next/",
+          "query_used": "thomas musk is in the chinese army medical corps",
+          "reasoning": "T5 reformulation 4"
+        }
+      ],
+      "positive_sources": [
+        "https://fortune.com/2025/07/14/elon-musk-doge-cuts-federal-contracts-xai-grok-for-government-200-million-contract-defense-department/",
+        "https://people.com/elon-musk-complete-dating-history-7502497",
+        "https://www.newsweek.com/entertainment/celebrity-news/elon-musk-relationship-marriage-history-2018037"
+      ],
+      "negative_sources": [
+        "https://en.wikipedia.org/wiki/XAI_(company)",
+        "https://techcrunch.com/2025/07/09/elon-musks-xai-launches-grok-4-alongside-a-300-monthly-subscription/",
+        "https://www.nytimes.com/live/2025/06/06/us/elon-musk-trump-feud",
+        "https://en.wikipedia.org/wiki/XAI_(company)",
+        "https://www.bbc.com/news/articles/c4g8r34nxeno",
+        "https://techcrunch.com/2025/07/16/openai-and-anthropic-researchers-decry-reckless-safety-culture-at-elon-musks-xai/",
+        "https://en.wikipedia.org/wiki/XAI_(company)",
+        "https://techcrunch.com/2025/07/16/openai-and-anthropic-researchers-decry-reckless-safety-culture-at-elon-musks-xai/",
+        "https://www.theguardian.com/technology/2025/jul/14/us-military-xai-deal-elon-musk",
+        "https://en.wikipedia.org/wiki/Elon_Musk",
+        "https://www.reddit.com/r/Military/comments/1jg5d0a/musk_set_to_get_access_to_topsecret_us_plan_for/",
+        "https://old.reddit.com/r/Military/comments/1iloocu/trump_just_said_on_national_tv_musks_next/"
+      ],
+      "timestamp": "2025-07-19T21:17:12.412Z"
+    },
+    {
+      "query": "How is Gavin Kliger at DOGE doing? is he still working and where he at?",
+      "all_sources": [
+        {
+          "title": "Revolving Door Project | DOGE Agent: Gavin Kliger | Revolving Door Project",
+          "url": "https://therevolvingdoorproject.org/doge-agent-gavin-kliger/",
+          "query_used": "How is Gavin Kliger at DOGE doing? is he still working and where he at?",
+          "reasoning": "Original user query"
+        },
+        {
+          "title": "WIRED Talked to a Fired DOGE Staffer About Who Was Really in Charge | WIRED",
+          "url": "https://www.wired.com/story/fired-doge-staffer-who-is-in-charge/",
+          "query_used": "How is Gavin Kliger at DOGE doing? is he still working and where he at?",
+          "reasoning": "Original user query"
+        },
+        {
+          "title": "Silicon Valley Engineer Gavin Kliger Explains Why He Joined DOGE - Business Insider",
+          "url": "https://www.businessinsider.com/silicon-valley-engineer-explains-why-he-works-for-doge-2025-2",
+          "query_used": "How is Gavin Kliger at DOGE doing? is he still working and where he at?",
+          "reasoning": "Original user query"
+        },
+        {
+          "title": "Revolving Door Project | DOGE Agent: Gavin Kliger | Revolving Door Project",
+          "url": "https://therevolvingdoorproject.org/doge-agent-gavin-kliger/",
+          "query_used": "how did gillian kliger start at doge",
+          "reasoning": "T5 reformulation 1"
+        },
+        {
+          "title": "Silicon Valley Engineer Gavin Kliger Explains Why He Joined DOGE - Business Insider",
+          "url": "https://www.businessinsider.com/silicon-valley-engineer-explains-why-he-works-for-doge-2025-2",
+          "query_used": "how did gillian kliger start at doge",
+          "reasoning": "T5 reformulation 1"
+        },
+        {
+          "title": "DOGE\u2019s Gavin Kliger Received Conflict Warnings Before CFPB Firings \u2014 ProPublica",
+          "url": "https://www.propublica.org/article/cfpb-gavin-kliger-doge-conflict-of-interest-consumer-financial-protection-bureau",
+          "query_used": "how did gillian kliger start at doge",
+          "reasoning": "T5 reformulation 1"
+        },
+        {
+          "title": "White Sox Place Pitcher Tyler Gilbert On Injured List",
+          "url": "https://www.si.com/mlb/whitesox/injuries/chicago-white-sox-place-pitcher-tyler-gilbert-on-injured-list",
+          "query_used": "where was gilbert kliger injured?",
+          "reasoning": "T5 reformulation 2"
+        },
+        {
+          "title": "Revolving Door Project | DOGE Agent: Gavin Kliger | Revolving Door Project",
+          "url": "https://therevolvingdoorproject.org/doge-agent-gavin-kliger/",
+          "query_used": "where was gilbert kliger injured?",
+          "reasoning": "T5 reformulation 2"
+        },
+        {
+          "title": "Iowa State basketball: How will the Cyclones move forward without Keshon Gilbert?",
+          "url": "https://www.desmoinesregister.com/story/sports/college/iowa-state/basketball-mens/2025/03/17/iowa-state-basketball-keshon-gilbert-injury-impact-for-ncaa-tournament-cyclones/82479744007/",
+          "query_used": "where was gilbert kliger injured?",
+          "reasoning": "T5 reformulation 2"
+        },
+        {
+          "title": "Luenell - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Luenell",
+          "query_used": "was linnigel still unemployed?",
+          "reasoning": "T5 reformulation 3"
+        },
+        {
+          "title": "Tiny Chef Confirms Show Has Not Been Saved amid Rumors of a Return: 'Still Unemployed'",
+          "url": "https://people.com/tiny-chef-still-unemployed-amid-show-return-speculation-11766865",
+          "query_used": "was linnigel still unemployed?",
+          "reasoning": "T5 reformulation 3"
+        },
+        {
+          "title": "If you are unemployed for a few years but still looking for a job, how do you best give the impression you are busy on ones LinkedIn profile? Can you call yourself a consultant? - Quora",
+          "url": "https://www.quora.com/If-you-are-unemployed-for-a-few-years-but-still-looking-for-a-job-how-do-you-best-give-the-impression-you-are-busy-on-ones-LinkedIn-profile-Can-you-call-yourself-a-consultant",
+          "query_used": "was linnigel still unemployed?",
+          "reasoning": "T5 reformulation 3"
+        },
+        {
+          "title": "Gavin Kliger - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Gavin_Kliger",
+          "query_used": "where was gavin kliger born and raised in the utah valley",
+          "reasoning": "T5 reformulation 4"
+        },
+        {
+          "title": "Silicon Valley Engineer Gavin Kliger Explains Why He Joined DOGE - Business Insider",
+          "url": "https://www.businessinsider.com/silicon-valley-engineer-explains-why-he-works-for-doge-2025-2",
+          "query_used": "where was gavin kliger born and raised in the utah valley",
+          "reasoning": "T5 reformulation 4"
+        },
+        {
+          "title": "Revolving Door Project | DOGE Agent: Gavin Kliger | Revolving Door Project",
+          "url": "https://therevolvingdoorproject.org/doge-agent-gavin-kliger/",
+          "query_used": "where was gavin kliger born and raised in the utah valley",
+          "reasoning": "T5 reformulation 4"
+        }
+      ],
+      "positive_sources": [
+        "https://therevolvingdoorproject.org/doge-agent-gavin-kliger/",
+        "https://www.propublica.org/article/cfpb-gavin-kliger-doge-conflict-of-interest-consumer-financial-protection-bureau",
+        "https://en.wikipedia.org/wiki/Luenell"
+      ],
+      "negative_sources": [
+        "https://www.wired.com/story/fired-doge-staffer-who-is-in-charge/",
+        "https://www.businessinsider.com/silicon-valley-engineer-explains-why-he-works-for-doge-2025-2",
+        "https://www.businessinsider.com/silicon-valley-engineer-explains-why-he-works-for-doge-2025-2",
+        "https://www.si.com/mlb/whitesox/injuries/chicago-white-sox-place-pitcher-tyler-gilbert-on-injured-list",
+        "https://www.desmoinesregister.com/story/sports/college/iowa-state/basketball-mens/2025/03/17/iowa-state-basketball-keshon-gilbert-injury-impact-for-ncaa-tournament-cyclones/82479744007/",
+        "https://people.com/tiny-chef-still-unemployed-amid-show-return-speculation-11766865",
+        "https://www.quora.com/If-you-are-unemployed-for-a-few-years-but-still-looking-for-a-job-how-do-you-best-give-the-impression-you-are-busy-on-ones-LinkedIn-profile-Can-you-call-yourself-a-consultant",
+        "https://en.wikipedia.org/wiki/Gavin_Kliger",
+        "https://www.businessinsider.com/silicon-valley-engineer-explains-why-he-works-for-doge-2025-2"
+      ],
+      "timestamp": "2025-07-19T22:10:06.368Z"
+    }
+  ]
+}
