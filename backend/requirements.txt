@@ -10,3 +10,4 @@ boto3
 sentence-transformers
 torch          # CPU wheel strongly advised
 transformers   # (reranker + T5)
+lxml-html-clean
