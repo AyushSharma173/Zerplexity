@@ -907,66 +907,66 @@ async def _stream_answer(
         first_token_time = None
         token_count = 0
         
-        if model == "gpt4o":
-            chat_stream = await openai_client.chat.completions.create(
-                model="gpt-4o-mini",
-                messages=[{"role": "system", "content": sys_prompt},
-                          {"role": "user",   "content": user_prompt}],
-                temperature=0.3,
-                max_tokens=512,
-                stream=True,
-            )
-            answer_buf = ""
-            async for event in chat_stream:
-                delta = event.choices[0].delta.content or ""
-                if delta:
+    if model == "gpt4o":
+        chat_stream = await openai_client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[{"role": "system", "content": sys_prompt},
+                      {"role": "user",   "content": user_prompt}],
+            temperature=0.3,
+            max_tokens=512,
+            stream=True,
+        )
+        answer_buf = ""
+        async for event in chat_stream:
+            delta = event.choices[0].delta.content or ""
+            if delta:
                     if first_token_time is None:
                         first_token_time = asyncio.get_event_loop().time()
-                    answer_buf += delta
+                answer_buf += delta
                     token_count += 1
                     print(f"Streaming token: '{delta}'")  # Debug logging
-                    yield json.dumps({"type": "token", "value": delta}) + "\n"
+                yield json.dumps({"type": "token", "value": delta}) + "\n"
 
         # SageMaker Llama‑80B (single call, then chunk tokens locally)
-        else:
-            print(f"Here calling Llama model instead of gpt 4o !!!!!")
-            payload = {
-                "inputs": (
-                    f"<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
-                    f"{sys_prompt}<|eot_id|>"
-                    f"<|start_header_id|>user<|end_header_id|>\n\n"
-                    f"{user_prompt}<|eot_id|>"
-                    f"<|start_header_id|>assistant<|end_header_id|>\n\n"
-                ),
-                "parameters": {
-                    "max_new_tokens": 512,
-                    "temperature": 0.3,
-                    "top_p": 0.9,
-                    "stop": "<|eot_id|>",
-                },
-            }
-            resp = sm_client.invoke_endpoint(
-                EndpointName=SM_ENDPOINT_NAME,
-                ContentType="application/json",
-                Body=json.dumps(payload),
-            )
-            out = json.loads(resp["Body"].read())
-            text = out.get("generated_text", "")
+    else:
+        print(f"Here calling Llama model instead of gpt 4o !!!!!")
+        payload = {
+            "inputs": (
+                f"<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
+                f"{sys_prompt}<|eot_id|>"
+                f"<|start_header_id|>user<|end_header_id|>\n\n"
+                f"{user_prompt}<|eot_id|>"
+                f"<|start_header_id|>assistant<|end_header_id|>\n\n"
+            ),
+            "parameters": {
+                "max_new_tokens": 512,
+                "temperature": 0.3,
+                "top_p": 0.9,
+                "stop": "<|eot_id|>",
+            },
+        }
+        resp = sm_client.invoke_endpoint(
+            EndpointName=SM_ENDPOINT_NAME,
+            ContentType="application/json",
+            Body=json.dumps(payload),
+        )
+        out = json.loads(resp["Body"].read())
+        text = out.get("generated_text", "")
 
             # For Llama, we can't measure real first token time since it's not streaming
             first_token_time = asyncio.get_event_loop().time()
             token_count = len(text.split())
 
-            # stream it in ~30‑token chunks so the front‑end behaves the same
-            TOKENS_PER_CHUNK = 30
-            words = text.split()
-            answer_buf = ""
-            for i in range(0, len(words), TOKENS_PER_CHUNK):
-                chunk = " ".join(words[i : i + TOKENS_PER_CHUNK])
-                answer_buf += chunk + " "
-                yield json.dumps({"type": "token", "value": chunk + " "}) + "\n"
+        # stream it in ~30‑token chunks so the front‑end behaves the same
+        TOKENS_PER_CHUNK = 30
+        words = text.split()
+        answer_buf = ""
+        for i in range(0, len(words), TOKENS_PER_CHUNK):
+            chunk = " ".join(words[i : i + TOKENS_PER_CHUNK])
+            answer_buf += chunk + " "
+            yield json.dumps({"type": "token", "value": chunk + " "}) + "\n"
 
-        # 5) Done
+    # 5) Done
         end_time = asyncio.get_event_loop().time()
         latency = end_time - start_time
         ttft = first_token_time - start_time if first_token_time else 0
