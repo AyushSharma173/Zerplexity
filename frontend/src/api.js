@@ -1,46 +1,71 @@
 // frontend/src/api.js
-const BASE = 'http://127.0.0.1:8000';
+// API configuration
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
-/**
- * Stream answer chunks (newline‑delimited JSON) from the backend.
- * Returns an async iterator that yields events:
- *   {type:'sources', data:[{title,url}…]}
- *   {type:'token',   value:'string'}
- *   {type:'end',     answer:'full answer', sources:[…]}
- *   {type:'training_start'} - Training mode started
- *   {type:'token',   value:'string', response:1|2} - Training mode tokens
- *   {type:'training_comparison', response1:{...}, response2:{...}} - Training comparison
- *   {type:'training_end'} - Training mode ended
- */
-export async function askStream(query, mode = 'vanilla', model = 'gpt4o', count = 5, training = false, queryGenerator = 'gpt4o') {
+export async function askStream(q, mode, model, count, training, queryGenerator) {
   const params = new URLSearchParams({
-    q: query,
+    q,
+    count,
     mode,
     model,
-    count: String(count),
+    training: training.toString(),
     stream: 'true',
-    training: String(training),
-    query_generator: queryGenerator,
+    query_generator: queryGenerator
   });
-  const res = await fetch(`${BASE}/answer?${params.toString()}`);
-  if (!res.ok) throw new Error(`Backend error ${res.status}`);
 
-  const reader   = res.body.getReader();
-  const decoder  = new TextDecoder('utf-8');
-  let buffer     = '';
+  const response = await fetch(`${API_BASE_URL}/answer?${params}`);
+  
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
 
-  async function* iterator() {
-    while (true) {
-      const { value, done } = await reader.read();
-      if (done) break;
-      buffer += decoder.decode(value, { stream: true });
-      let idx;
-      while ((idx = buffer.indexOf('\n')) !== -1) {
-        const line = buffer.slice(0, idx).trim();
-        buffer     = buffer.slice(idx + 1);
-        if (line) yield JSON.parse(line);
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+
+  return {
+    async *[Symbol.asyncIterator]() {
+      try {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          const chunk = decoder.decode(value, { stream: true });
+          const lines = chunk.split('\n').filter(line => line.trim());
+
+          for (const line of lines) {
+            try {
+              const data = JSON.parse(line);
+              yield data;
+            } catch (e) {
+              console.warn('Failed to parse JSON:', line);
+            }
+          }
+        }
+      } finally {
+        reader.releaseLock();
       }
     }
+  };
+}
+
+export async function searchWeb(q, count = 10) {
+  const params = new URLSearchParams({ q, count });
+  const response = await fetch(`${API_BASE_URL}/search?${params}`);
+  
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
   }
-  return iterator();
+  
+  return response.json();
+}
+
+export async function generateQueries(q, queryGenerator = 'gpt4o') {
+  const params = new URLSearchParams({ q, query_generator: queryGenerator });
+  const response = await fetch(`${API_BASE_URL}/generate_queries?${params}`);
+  
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  
+  return response.json();
 }
