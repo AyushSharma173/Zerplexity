@@ -7,6 +7,155 @@
 
 **Zerplexity** is a next-generation internet search assistant that combines cutting-edge AI models with sophisticated training data collection to deliver high-quality, citation-rich responses. Built as a comprehensive framework for real-time model evaluation and fine-tuning in production environments.
 
+## 🎯 Project Overview & Motivation
+
+### **What is Zerplexity?**
+
+Zerplexity is not just another search assistant—it's a **comprehensive research framework** designed for AI practitioners, researchers, and organizations who want to:
+
+- **Experiment with different AI models** in real-world search scenarios
+- **Collect high-quality training data** from actual user interactions
+- **Fine-tune models** for improved search, ranking, and response generation
+- **Compare model performance** across latency, quality, and user preference metrics
+
+### **Core Functionality**
+
+#### **🔄 Dual-Mode Operation**
+
+**Production Mode**: Optimized single-response generation for real-world usage
+- Single model response with optimized parameters
+- Comprehensive performance metrics (latency, TTFT, tokens/min)
+- Production-ready streaming with citation support
+
+**Training Mode**: Side-by-side model comparison for continuous improvement
+- **Simultaneous dual responses** with different temperatures (0.3 vs 0.7)
+- **A/B testing interface** for user preference collection
+- **Source ranking system** for reranker training data
+- **Query effectiveness tracking** for query rewriting improvements
+
+#### **🧠 Advanced Model Integration**
+
+**Response Generation Models**:
+- **GPT-4o Mini**: ~1,400-4,500 tokens/min with 0.5-2.5s TTFT
+- **Llama 80B + 8B Draft**: Speculative decoding on AWS SageMaker*
+
+**Query Processing Models**:
+- **GPT-4o Mini**: Structured JSON query generation with reasoning
+- **T5 Query Reformulation**: RL-trained model with beam search and temperature sampling
+
+**Retrieval & Ranking**:
+- **Vanilla Retrieval**: Standard relevance-based ranking
+- **Jina Reranker v1 Turbo**: Semantic CrossEncoder with neural reranking
+
+#### **🔍 Sophisticated Search Pipeline**
+
+1. **Multi-Query Generation**: Generate 3-5 search variations from user input
+2. **Concurrent Search**: Execute all queries simultaneously via Brave Search API
+3. **Content Extraction**: Intelligent web scraping with readability optimization
+4. **Semantic Chunking**: Context-aware text segmentation with overlap
+5. **Reranking**: Neural relevance scoring and context selection
+6. **Streaming Generation**: Real-time response with citation mapping
+
+### **Research & Training Capabilities**
+
+#### **📊 Comprehensive Training Data Collection**
+
+**Model Comparison Data**:
+```json
+{
+  "query": "How does quantum computing work?",
+  "response1": { "text": "...", "latency": 2.14, "tokens_per_minute": 1420, "temperature": 0.3 },
+  "response2": { "text": "...", "latency": 2.18, "tokens_per_minute": 1380, "temperature": 0.7 },
+  "selected_response": 1
+}
+```
+
+**Query Rewriting Training Data**:
+- Mapping of original queries → successful query variations
+- Source-query attribution for effectiveness measurement
+- Model comparison data (GPT-4o vs T5 performance)
+
+**Reranker Training Data**:
+- User-selected top-3 sources as positive examples
+- Remaining sources as negative examples
+- Query-document pairs with relevance labels
+
+#### **🎛️ Configurable Experimentation**
+
+Users can toggle between:
+- **Retrieval Strategies**: Vanilla vs Reranker-based
+- **Response Models**: GPT-4o Mini vs Llama 80B
+- **Query Generators**: GPT-4o vs T5 Reformulation
+- **Training Modes**: Production vs Model Comparison
+
+### **Performance Benchmarking**
+
+#### **Real-Time Metrics**
+- **Latency**: End-to-end response time
+- **TTFT**: Time to First Token measurement
+- **Throughput**: Tokens per minute generation rate
+- **Token Count**: Total tokens generated per response
+
+#### **Model Performance Comparison**
+| Model | Avg Latency | TTFT | Tokens/Min | Notes |
+|-------|-------------|------|------------|-------|
+| GPT-4o Mini | 2.1-2.9s | 0.5-1.3s | 1,400-4,500 | Consistent performance |
+| Llama 80B* | 3.0-5.0s | 2.0-3.0s | 800-1,200 | Limited by endpoint |
+
+### **Use Cases for Researchers**
+
+#### **🔬 Model Development**
+- **Compare response quality** across different models and parameters
+- **Evaluate query rewriting effectiveness** with real user queries
+- **Benchmark reranking improvements** on search relevance
+
+#### **📈 Data Collection**
+- **Gather preference data** for model fine-tuning
+- **Collect query-source mappings** for search optimization
+- **Build training datasets** for custom model development
+
+#### **🧪 A/B Testing**
+- **Test new model configurations** with real users
+- **Evaluate UI/UX changes** with integrated analytics
+- **Measure user satisfaction** across different approaches
+
+### **Technical Innovation**
+
+#### **🚀 Streaming Architecture**
+- **Async/await pipeline** for maximum concurrency
+- **Event-driven streaming** with typed message routing
+- **Memory-efficient generators** for large response handling
+
+#### **🔄 Training Loop Integration**
+- **Real-time feedback collection** during user interactions
+- **Automatic training data formatting** for popular ML frameworks
+- **Model performance tracking** across deployment cycles
+
+#### **☁️ Production-Ready Deployment**
+- **Container-based backend** with auto-scaling
+- **Edge-optimized frontend** with global CDN
+- **Hybrid storage system** with S3 integration and local fallback
+
+### **Why Zerplexity?**
+
+Traditional search assistants are black boxes—you can't easily:
+- Compare different AI models side-by-side
+- Collect training data from real user interactions
+- Fine-tune models based on actual user preferences
+- Experiment with different search and ranking strategies
+
+Zerplexity bridges this gap by providing a **complete research platform** that enables:
+- **Rapid experimentation** with different AI architectures
+- **Data-driven model improvement** through user feedback
+- **Performance benchmarking** across multiple dimensions
+- **Production deployment** of improved models
+
+**Perfect for**: AI researchers, ML engineers, organizations building custom search solutions, and anyone interested in advancing the state-of-the-art in AI-powered information retrieval.
+
+---
+
+*Note: Due to budget constraints, the Llama 80B model is currently hosted on a limited SageMaker endpoint, which affects its latency and throughput performance. In an optimized deployment with proper hardware allocation, Llama 80B with speculative decoding would achieve significantly better performance metrics.*
+
 ## 🏗️ System Architecture
 
 ```mermaid
