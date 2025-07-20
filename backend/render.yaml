@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: better-perplexity-backend
+    env: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: BRAVE_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: RERANKER_MODEL
+        value: jinaai/jina-reranker-v1-turbo-en
+      - key: TRAINING_S3_BUCKET
+        sync: false 

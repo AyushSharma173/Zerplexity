@@ -34,34 +34,25 @@ HEADERS = {
 MAX_CHARS_PER_PAGE = 1_500
 REQUEST_TIMEOUT    = 8.0
 
+from storage import load_json, save_json
+
 # Training data storage
-TRAINING_DATA_FILE = Path("training_data/training_data.json")
+TRAINING_DATA_FILE = "training_data/training_data.json"
 
 def load_training_data():
     """Load existing training data from file"""
-    if TRAINING_DATA_FILE.exists():
-        try:
-            with open(TRAINING_DATA_FILE, 'r') as f:
-                data = json.load(f)
-                return data.get("training_data", [])
-        except Exception as e:
-            print(f"Error loading training data: {e}")
-            return []
-    return []
+    data = load_json(TRAINING_DATA_FILE, {"training_data": []})
+    return data.get("training_data", [])
 
 def save_training_data(training_data):
     """Save training data to file"""
     try:
-        # Ensure directory exists
-        TRAINING_DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
-        
         # Load existing data and append new entry
         existing_data = load_training_data()
         existing_data.append(training_data)
         
         # Save back to file
-        with open(TRAINING_DATA_FILE, 'w') as f:
-            json.dump({"training_data": existing_data}, f, indent=2)
+        save_json(TRAINING_DATA_FILE, {"training_data": existing_data})
         
         print(f"Training data saved. Total entries: {len(existing_data)}")
         return True
@@ -83,24 +74,17 @@ def save_query_rewriting_training_data(training_data: QueryRewritingTrainingData
     """Save query rewriting training data to file"""
     try:
         # Create query rewriting training data file
-        query_training_file = Path("training_data/query_rewriting_training_data.json")
+        query_training_file = "training_data/query_rewriting_training_data.json"
         
         # Load existing data
-        existing_data = []
-        if query_training_file.exists():
-            try:
-                with open(query_training_file, 'r') as f:
-                    data = json.load(f)
-                    existing_data = data.get("query_rewriting_data", [])
-            except Exception as e:
-                print(f"Error loading query rewriting training data: {e}")
+        data = load_json(query_training_file, {"query_rewriting_data": []})
+        existing_data = data.get("query_rewriting_data", [])
         
         # Add new entry
         existing_data.append(training_data.dict())
         
         # Save back to file
-        with open(query_training_file, 'w') as f:
-            json.dump({"query_rewriting_data": existing_data}, f, indent=2)
+        save_json(query_training_file, {"query_rewriting_data": existing_data})
         
         print(f"Query rewriting training data saved. Total entries: {len(existing_data)}")
         return True
@@ -120,24 +104,17 @@ def save_reranker_training_data(training_data: RerankerTrainingData):
     """Save reranker training data to file"""
     try:
         # Create reranker training data file
-        reranker_training_file = Path("training_data/reranker_training_data.json")
+        reranker_training_file = "training_data/reranker_training_data.json"
         
         # Load existing data
-        existing_data = []
-        if reranker_training_file.exists():
-            try:
-                with open(reranker_training_file, 'r') as f:
-                    data = json.load(f)
-                    existing_data = data.get("reranker_data", [])
-            except Exception as e:
-                print(f"Error loading reranker training data: {e}")
+        data = load_json(reranker_training_file, {"reranker_data": []})
+        existing_data = data.get("reranker_data", [])
         
         # Add new entry
         existing_data.append(training_data.dict())
         
         # Save back to file
-        with open(reranker_training_file, 'w') as f:
-            json.dump({"reranker_data": existing_data}, f, indent=2)
+        save_json(reranker_training_file, {"reranker_data": existing_data})
         
         print(f"Reranker training data saved. Total entries: {len(existing_data)}")
         return True
@@ -147,9 +124,18 @@ def save_reranker_training_data(training_data: RerankerTrainingData):
 
 # ────── FastAPI app ──────
 app = FastAPI(title="Better‑Perplexity – Brave Search Proxy")
+
+ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "https://frontend-3noa3vjwu-ayush-sharmas-projects-e00bb95e.vercel.app",  # actual Vercel domain
+    "https://yourcustomdomain.com"  # add your custom domain if you have one
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:5174"],
+    allow_origins=ALLOWED_ORIGINS,
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -225,22 +211,29 @@ except Exception as e:
 openai_client = AsyncOpenAI(api_key=OPENAI_API_KEY) if OPENAI_API_KEY else None
 
 # ────── T5 Query Reformulation Model ──────
-try:
-    import torch
-    from transformers import T5ForConditionalGeneration, T5Tokenizer
-    
-    T5_MODEL_ID = "prhegde/t5-query-reformulation-RL"
-    print("⏳ Loading T5 query reformulation model...")
-    t5_tokenizer = T5Tokenizer.from_pretrained(T5_MODEL_ID)
-    t5_model = T5ForConditionalGeneration.from_pretrained(T5_MODEL_ID)
-    t5_model.eval()
-    if torch.cuda.is_available():
-        t5_model.cuda()
-    print("✅ T5 query reformulation model ready")
-except Exception as e:
-    print(f"⚠️  T5 model unavailable: {e}")
-    t5_tokenizer = None
-    t5_model = None
+t5_model = t5_tokenizer = None
+
+def get_t5():
+    """Lazy load T5 model to reduce boot time"""
+    global t5_model, t5_tokenizer
+    if t5_model is None:
+        try:
+            import torch
+            from transformers import T5ForConditionalGeneration, T5Tokenizer
+            
+            T5_MODEL_ID = "prhegde/t5-query-reformulation-RL"
+            print("⏳ Loading T5 query reformulation model...")
+            t5_tokenizer = T5Tokenizer.from_pretrained(T5_MODEL_ID)
+            t5_model = T5ForConditionalGeneration.from_pretrained(T5_MODEL_ID)
+            t5_model.eval()
+            if torch.cuda.is_available():
+                t5_model.cuda()
+            print("✅ T5 query reformulation model ready")
+        except Exception as e:
+            print(f"⚠️  T5 model unavailable: {e}")
+            t5_tokenizer = None
+            t5_model = None
+    return t5_model, t5_tokenizer
 
 # ────── Helper funcs ──────
 async def fetch_clean_text(client: httpx.AsyncClient, url: str) -> str:
@@ -264,6 +257,8 @@ def split_into_chunks(text: str, max_chars: int = 800, overlap: int = 120):
 # ────── Query Rewriting Functions ──────
 async def generate_search_queries_t5(user_query: str, num_queries: int = 4) -> QueryRewritingResponse:
     """Generate multiple search queries using T5 query reformulation model"""
+    
+    t5_model, t5_tokenizer = get_t5()
     
     if not t5_model or not t5_tokenizer:
         # Fallback to original query if T5 model is not available
@@ -580,13 +575,9 @@ async def get_training_data():
 async def get_query_rewriting_training_data():
     """Get all query rewriting training data (for debugging/admin purposes)"""
     try:
-        query_training_file = Path("training_data/query_rewriting_training_data.json")
-        if query_training_file.exists():
-            with open(query_training_file, 'r') as f:
-                data = json.load(f)
-                return {"query_rewriting_data": data.get("query_rewriting_data", []), "count": len(data.get("query_rewriting_data", []))}
-        else:
-            return {"query_rewriting_data": [], "count": 0}
+        query_training_file = "training_data/query_rewriting_training_data.json"
+        data = load_json(query_training_file, {"query_rewriting_data": []})
+        return {"query_rewriting_data": data.get("query_rewriting_data", []), "count": len(data.get("query_rewriting_data", []))}
     except Exception as e:
         raise HTTPException(500, f"Error loading query rewriting training data: {str(e)}")
 
