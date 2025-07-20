@@ -128,7 +128,8 @@ app = FastAPI(title="Better‑Perplexity – Brave Search Proxy")
 ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:5174",
-    "https://frontend-3noa3vjwu-ayush-sharmas-projects-e00bb95e.vercel.app",  # actual Vercel domain
+    "https://frontend-3noa3vjwu-ayush-sharmas-projects-e00bb95e.vercel.app",  # old Vercel domain
+    "https://frontend-d8i6v1a7n-ayush-sharmas-projects-e00bb95e.vercel.app",  # new Vercel domain
     "https://yourcustomdomain.com"  # add your custom domain if you have one
 ]
 
@@ -627,6 +628,14 @@ async def answer_with_citations(
         return StreamingResponse(
             _stream_answer(q, count, mode, model, training, query_generator),
             media_type="text/plain",  # newline‑delimited JSON
+            headers={
+                "Cache-Control": "no-cache",
+                "Connection": "keep-alive",
+                "Content-Type": "text/plain; charset=utf-8",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type",
+            }
         )
     else:
         full = [chunk async for chunk in _stream_answer(q, count, mode, model, training, query_generator)]
