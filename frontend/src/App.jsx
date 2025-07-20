@@ -110,7 +110,7 @@ export default function App() {
         }))
       };
 
-      const response = await fetch('http://localhost:8000/save_source_ranking', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'}/save_source_ranking`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -175,7 +175,7 @@ export default function App() {
         timestamp: new Date().toISOString()
       };
 
-      const response = await fetch('http://localhost:8000/save_query_rewriting_training', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'}/save_query_rewriting_training`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -232,7 +232,7 @@ export default function App() {
         timestamp: new Date().toISOString()
       };
 
-      const response = await fetch('http://localhost:8000/save_reranker_training', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'}/save_reranker_training`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -277,7 +277,7 @@ export default function App() {
       };
 
       // Send to backend
-      const response = await fetch('http://localhost:8000/save_training_data', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'}/save_training_data`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -434,21 +434,11 @@ export default function App() {
           setChats(prev => {
             const copy = { ...prev };
             if (training && evt.response) {
-              // Add duplicate detection for training mode
+              // Training mode: Add to specific response
               const targetIndex = botIndex + evt.response - 1;
-              const currentContent = copy[currentChatId].messages[targetIndex].content;
-              if (currentContent.endsWith(evt.value)) {
-                console.warn('Duplicate token detected in training mode:', evt.value, 'response:', evt.response);
-                return copy; // Skip adding duplicate
-              }
               copy[currentChatId].messages[targetIndex].content += evt.value;
             } else {
-              // Add debugging to check for duplicate tokens
-              const currentContent = copy[currentChatId].messages[botIndex].content;
-              if (currentContent.endsWith(evt.value)) {
-                console.warn('Duplicate token detected:', evt.value);
-                return copy; // Skip adding duplicate
-              }
+              // Production mode: Add to single response
               copy[currentChatId].messages[botIndex].content += evt.value;
             }
             return copy;
